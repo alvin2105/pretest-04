@@ -10,21 +10,21 @@ tahun			: 2019
 #include<iostream>
 using namespace std;
 
-struct ELemlist{
+struct mahasiswa{
 
 	char npm[14];
 	char nama[40];
 	float ipk;
-	Elemlist* next;
+	mahasiswa* next;
 };
-typedef Elemlist* pointer;
+typedef mahasiswa* pointer;
 typedef pointer list;
 
 void createlist(list& first){
 	first=NULL;
 }
 void createData(pointer& pBaru){
-	pBaru=new Elemlist;
+	pBaru=new mahasiswa;
 	cout<<"Masukkan NPM\t: ";
 	cin.ignore();
 	cin.getline(pBaru->npm,20);
@@ -32,7 +32,7 @@ void createData(pointer& pBaru){
 	cin.getline(pBaru->nama,40);
 	cout<<"Masukkan IPK\t: ";
 	cin>>pBaru->ipk;
-	peg->next=NULL;
+	pBaru->next=NULL;
 	
 }
 void insertSortNPM(list& first, pointer pBaru){
@@ -42,7 +42,9 @@ void insertSortNPM(list& first, pointer pBaru){
 	}
 	last->next=pBaru;
 }
-void traversal(List first)
+
+
+void traversal(list first)
 {
     pointer pBantu;
     pBantu=first;
@@ -68,16 +70,43 @@ void traversal(List first)
     }
 }
 int main(){
-	
-	list first;
-	pointer pBaru,pHapus;
-	char lanjut;
-		cout<<"--------DATA MAHASISWA------"<<endl;
-		createlist(first);
-	do{
-		createData(pBaru);
-		insertFirst(first,pBaru);
-		cout<<"(Y/N)\t: ";
-		cin>>lanjut;
-	}while(lanjut=='y'||lanjut=='Y');
-	traversal(first);
+
+	  pointer pBaru;
+    list first;
+    int pilih;
+
+    createlist(first);
+
+    while(1)
+    {
+        system("cls");
+       
+        cout<<"  \tDATA MAHASISWA  " <<endl;
+       
+
+     
+        cout<<" 1.     Tambah Data                          " <<endl;
+        cout<<" 2.     Traversal                            " <<endl;
+        cout<<" 3.     EXIT                                 " <<endl <<endl;
+        cout<<" Masukan Pilihan : "; cin>>pilih; cout<<endl;
+
+        switch(pilih)
+        {
+            case 1:
+                createData(pBaru);
+                insertSortNPM(first, pBaru);
+                break;
+            case 2:
+
+                traversal(first);
+                break;
+            case 3:
+                cout<<"Terima Kasih " <<endl;
+                return 0;
+            default:
+                cout<<"EXIT" <<endl;
+                break;
+        }
+        system("pause");
+    }
+}
